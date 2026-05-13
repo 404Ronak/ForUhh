@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Vidhi ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Dancing+Script:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#07091a;
+  --purple:#6d28d9;
+  --purple-light:#a78bfa;
+  --purple-pale:#c4b5fd;
+  --silver:#cbd5e1;
+  --silver-light:#e2e8f0;
+  --gold:#fbbf24;
+  --pink:#f9a8d4;
+  --white:#ffffff;
+  --font-display:'Cormorant Garamond',serif;
+  --font-script:'Dancing Script',cursive;
+  --font-body:'Raleway',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--silver-light);font-family:var(--font-body);font-weight:300;overflow-x:hidden;cursor:default;}
+#starCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+section{position:relative;z-index:1;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;}
+.hero-label{font-family:var(--font-script);font-size:1.3rem;color:var(--purple-light);letter-spacing:.08em;opacity:0;animation:fadeUp 1s ease .5s forwards;}
+.hero-title{font-family:var(--font-display);font-size:clamp(4.5rem,13vw,10rem);font-weight:300;line-height:1;margin:.6rem 0;color:var(--white);letter-spacing:-.02em;opacity:0;animation:fadeUp 1.2s ease 1s forwards;}
+.hero-title .name{font-style:italic;background:linear-gradient(135deg,#c4b5fd 0%,#818cf8 50%,#f9a8d4 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-tagline{font-family:var(--font-display);font-size:clamp(1rem,2.5vw,1.45rem);font-style:italic;color:var(--silver);line-height:1.9;max-width:600px;margin:1.5rem auto;opacity:0;animation:fadeUp 1s ease 1.7s forwards;}
+.scroll-hint{margin-top:3rem;font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;color:var(--purple-light);opacity:0;animation:fadeUp 1s ease 2.4s forwards,nudge 2.5s ease 3.2s infinite;}
+
+/* TEASE */
+.tease-section{min-height:90vh;display:flex;align-items:center;justify-content:center;padding:5rem 2rem;text-align:center;}
+.tease-inner{max-width:680px;}
+.whisper{font-family:var(--font-script);font-size:1.6rem;color:var(--purple-light);margin-bottom:.4rem;}
+.oops{font-size:.95rem;color:var(--silver);font-style:italic;margin-bottom:2.5rem;opacity:.7;}
+.tease-heading{font-family:var(--font-display);font-size:clamp(2.8rem,8vw,5.5rem);font-weight:300;color:var(--white);margin-bottom:1.5rem;}
+.divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--purple-light),transparent);margin:1.5rem auto;}
+.tease-body{font-family:var(--font-display);font-size:clamp(1.1rem,2.5vw,1.4rem);font-style:italic;line-height:2;color:var(--silver);}
+.tease-body em{color:var(--purple-pale);}
+
+/* REASONS */
+.reasons-section{padding:6rem 2rem;text-align:center;}
+.section-label{font-family:var(--font-script);font-size:1.3rem;color:var(--purple-light);margin-bottom:.8rem;}
+.section-title{font-family:var(--font-display);font-size:clamp(2.2rem,6vw,4.5rem);font-weight:300;color:var(--white);margin-bottom:3rem;letter-spacing:-.02em;}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.4rem;max-width:1000px;margin:0 auto;}
+.card{background:rgba(109,40,217,.07);border:1px solid rgba(167,139,250,.18);border-radius:18px;padding:2rem 1.8rem;text-align:left;position:relative;overflow:hidden;opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease,border-color .3s,background .3s,box-shadow .3s;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+.card.visible{opacity:1;transform:translateY(0);}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,.55),transparent);}
+.card:hover{border-color:rgba(167,139,250,.45);background:rgba(109,40,217,.14);transform:translateY(-5px) !important;box-shadow:0 24px 48px rgba(109,40,217,.22);}
+.card-number{font-family:var(--font-display);font-size:3rem;font-weight:300;color:rgba(167,139,250,.28);line-height:1;margin-bottom:.5rem;}
+.card-text{font-family:var(--font-display);font-size:1.15rem;font-style:italic;line-height:1.75;color:var(--silver-light);}
+
+/* MEMORY */
+.memory-section{min-height:70vh;display:flex;align-items:center;justify-content:center;padding:5rem 2rem;text-align:center;}
+.memory-inner{max-width:700px;}
+.memory-card{background:rgba(249,168,212,.05);border:1px solid rgba(249,168,212,.22);border-radius:24px;padding:3rem 2.5rem;position:relative;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
+.memory-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(249,168,212,.5),transparent);}
+.memory-icon{font-size:2.5rem;margin-bottom:1.2rem;display:block;}
+.memory-title{font-family:var(--font-script);font-size:1.8rem;color:var(--pink);margin-bottom:1.2rem;}
+.memory-text{font-family:var(--font-display);font-size:clamp(1.05rem,2.5vw,1.35rem);font-style:italic;line-height:2;color:var(--silver);}
+.memory-text em{color:var(--pink);}
+
+/* SCRATCH CARD */
+.scratch-section{min-height:80vh;display:flex;align-items:center;justify-content:center;padding:5rem 2rem;text-align:center;}
+.scratch-inner{max-width:640px;width:100%;}
+.scratch-label{font-family:var(--font-script);font-size:1.6rem;color:var(--purple-light);margin-bottom:.4rem;}
+.scratch-subtitle{font-family:var(--font-display);font-size:1.05rem;font-style:italic;color:var(--silver);opacity:.7;margin-bottom:2rem;}
+.scratch-wrap{
+  position:relative;width:100%;
+  border-radius:24px;overflow:hidden;
+  box-shadow:0 0 60px rgba(167,139,250,.18);
+  cursor:crosshair;
+  user-select:none;-webkit-user-select:none;
+}
+.shayari-reveal{
+  background:linear-gradient(135deg,rgba(109,40,217,.18) 0%,rgba(249,168,212,.10) 100%);
+  border:1px solid rgba(167,139,250,.3);
+  border-radius:24px;
+  padding:2.8rem 2.2rem;
+  position:relative;
+}
+.shayari-reveal::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(249,168,212,.6),transparent);}
+.shayari-emoji-top{font-size:2.2rem;margin-bottom:1rem;display:block;line-height:1;}
+.shayari-text{font-family:var(--font-display);font-size:clamp(1.15rem,2.8vw,1.5rem);font-style:italic;line-height:2.2;color:var(--silver-light);}
+.shayari-text .hi{color:var(--purple-pale);}
+.shayari-text .pk{color:var(--pink);}
+.shayari-text .go{color:var(--gold);}
+.shayari-emoji-bottom{font-size:1.6rem;margin-top:1.1rem;display:block;letter-spacing:.4rem;}
+.shayari-credit{margin-top:1.2rem;font-family:var(--font-script);font-size:1.1rem;color:rgba(167,139,250,.55);}
+#scratchCanvas{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:24px;touch-action:none;}
+.scratch-hint-txt{margin-top:1.2rem;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--purple-light);opacity:.65;animation:nudge 2.5s ease infinite;}
+.scratch-done-msg{margin-top:1.2rem;font-family:var(--font-script);font-size:1.35rem;color:var(--pink);opacity:0;transition:opacity .8s ease;pointer-events:none;}
+.scratch-done-msg.show{opacity:1;}
+
+/* CONFESSION */
+.confession-section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 2rem;text-align:center;}
+.confession-inner{max-width:800px;}
+.cline{font-family:var(--font-display);font-size:clamp(1.15rem,3vw,1.7rem);font-style:italic;color:var(--silver);line-height:2.2;opacity:0;transform:translateY(22px);transition:opacity .85s ease,transform .85s ease;}
+.cline.visible{opacity:1;transform:translateY(0);}
+.cline.big{font-size:clamp(2.2rem,5.5vw,4rem);font-weight:300;color:var(--white);line-height:1.4;margin:1.8rem 0;}
+.cline.accent{color:var(--purple-pale);font-size:clamp(1.5rem,4.5vw,2.8rem);}
+.cline.pink-c{color:var(--pink);font-size:clamp(1.3rem,3.5vw,2.2rem);}
+.cline.gold-text{color:var(--gold);font-size:clamp(1.1rem,2.8vw,1.6rem);}
+.serendipity-block{margin:2rem auto 1rem;max-width:680px;background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.2);border-radius:20px;padding:2rem 2.2rem;position:relative;opacity:0;transform:translateY(22px);transition:opacity .85s ease,transform .85s ease;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+.serendipity-block::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,.5),transparent);}
+.serendipity-block.visible{opacity:1;transform:translateY(0);}
+.serendipity-block p{font-family:var(--font-display);font-size:clamp(1.05rem,2.4vw,1.35rem);font-style:italic;line-height:2;color:var(--silver);}
+.serendipity-block p em{color:var(--purple-pale);}
+.serendipity-block p .pink-em{color:var(--pink);}
+.serendipity-label{font-family:var(--font-script);font-size:1.1rem;color:var(--purple-light);margin-bottom:.8rem;display:block;}
+
+/* QUESTION */
+.question-section{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:4rem 2rem;text-align:center;}
+.q-intro{font-family:var(--font-display);font-size:clamp(1.2rem,3vw,1.8rem);font-style:italic;color:var(--silver);margin-bottom:1.2rem;opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease;}
+.q-intro.visible{opacity:1;transform:translateY(0);}
+.the-question{font-family:var(--font-script);font-size:clamp(3.2rem,11vw,8rem);color:var(--white);margin-bottom:3.5rem;text-shadow:0 0 80px rgba(167,139,250,.5);opacity:0;transform:translateY(25px);transition:opacity 1s ease .25s,transform 1s ease .25s;}
+.the-question.visible{opacity:1;transform:translateY(0);}
+.buttons-row{display:flex;gap:1.8rem;align-items:center;justify-content:center;position:relative;min-height:80px;flex-wrap:wrap;}
+.btn-yes{padding:1.1rem 3.2rem;font-family:var(--font-display);font-size:1.45rem;font-style:italic;font-weight:600;color:var(--white);background:linear-gradient(135deg,#5b21b6,#7c3aed,#8b5cf6);border:none;border-radius:50px;cursor:pointer;box-shadow:0 0 35px rgba(109,40,217,.5);transition:transform .3s ease,box-shadow .3s ease;letter-spacing:.04em;position:relative;overflow:hidden;z-index:10;}
+.btn-yes::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.18),transparent 60%);border-radius:50px;}
+.btn-yes:hover{transform:scale(1.07);box-shadow:0 0 60px rgba(109,40,217,.8);}
+.btn-no{padding:.9rem 2rem;font-family:var(--font-body);font-size:1rem;font-weight:400;color:var(--silver);background:transparent;border:1px solid rgba(167,139,250,.28);border-radius:50px;cursor:pointer;transition:border-color .2s;white-space:nowrap;z-index:10;}
+.btn-no:hover{border-color:rgba(167,139,250,.55);}
+
+/* RESULT */
+.result-msg{display:none;margin-top:2.5rem;animation:fadeUp .8s ease forwards;max-width:600px;}
+.result-msg.show{display:block;}
+.result-big{font-family:var(--font-script);font-size:clamp(2.2rem,7vw,5rem);color:var(--purple-pale);margin-bottom:1.2rem;}
+.result-sub{font-family:var(--font-display);font-size:clamp(1.1rem,2.5vw,1.4rem);font-style:italic;color:var(--silver);line-height:1.9;max-width:520px;margin:0 auto;}
+.result-sub em{color:var(--purple-light);}
+.love-note{margin-top:2.5rem;background:rgba(109,40,217,.1);border:1px solid rgba(167,139,250,.3);border-radius:20px;padding:2rem 1.8rem;text-align:left;position:relative;}
+.love-note::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,.6),transparent);}
+.love-note-title{font-family:var(--font-script);font-size:1.4rem;color:var(--purple-pale);margin-bottom:1rem;}
+.love-note-body{font-family:var(--font-display);font-size:1.1rem;font-style:italic;line-height:1.9;color:var(--silver-light);}
+.love-note-sig{margin-top:1.2rem;font-family:var(--font-script);font-size:1.3rem;color:var(--pink);text-align:right;}
+.fielding-line{margin-top:2rem;font-family:var(--font-script);font-size:clamp(1.5rem,4vw,2.4rem);color:var(--gold);animation:glow 2s ease-in-out infinite alternate;}
+@keyframes glow{from{text-shadow:0 0 20px rgba(251,191,36,.4);}to{text-shadow:0 0 40px rgba(251,191,36,.8),0 0 70px rgba(251,191,36,.3);}}
+
+/* FOOTER */
+.footer{padding:3rem 2rem;text-align:center;font-family:var(--font-script);font-size:1.1rem;color:rgba(167,139,250,.5);position:relative;z-index:1;}
+
+/* CONFETTI */
+.cp{position:fixed;top:-12px;border-radius:3px;animation:fall linear forwards;z-index:999;pointer-events:none;}
+@keyframes fall{to{transform:translateY(110vh) rotate(800deg);opacity:0;}}
+.heart-float{position:fixed;pointer-events:none;z-index:998;animation:heartRise linear forwards;}
+@keyframes heartRise{0%{opacity:1;transform:translateY(0) scale(1);}100%{opacity:0;transform:translateY(-60vh) scale(1.6) rotate(20deg);}}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes nudge{0%,100%{transform:translateY(0);}50%{transform:translateY(9px);}}
+
+@media(max-width:600px){
+  .cards-grid{grid-template-columns:1fr;}
+  .btn-no{width:100%;}
+  .memory-card,.shayari-reveal{padding:2rem 1.2rem;}
+  .serendipity-block{padding:1.5rem 1.2rem;}
+}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<canvas id="starCanvas"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-label">just for you, Dolly...</p>
+    <h1 class="hero-title">For <span class="name">Vidhi</span></h1>
+    <p class="hero-tagline">Because some people walk into your life and quietly rearrange everything — and you don't even notice until it's far, far too late to pretend otherwise.</p>
+    <div class="scroll-hint">✦ &nbsp; scroll down &nbsp; ✦</div>
+  </div>
+</section>
+
+<!-- TEASE -->
+<section class="tease-section">
+  <div class="tease-inner">
+    <p class="whisper reveal">psst... hey Dolly 👀</p>
+    <p class="oops reveal">( okay okay — I know. I know. 😅 )</p>
+    <h2 class="tease-heading reveal">Hi, Vidhi.</h2>
+    <div class="divider"></div>
+    <p class="tease-body reveal">
+      I know you already made that face when you saw "Dolly" up there.<br>
+      That little frown — eyebrows slightly furrowed, that tiny corner-of-mouth thing you do.<br><br>
+      Honestly? It is one of my favorite things about you.<br>
+      <em>Don't tell anyone I said that. I have a reputation to maintain.</em>
+    </p>
+  </div>
+</section>
+
+<!-- REASONS -->
+<section class="reasons-section">
+  <p class="section-label reveal">a few reasons (out of approximately a million)</p>
+  <h2 class="section-title reveal">Why it's you.</h2>
+  <div class="cards-grid">
+    <div class="card"><div class="card-number">01</div><p class="card-text">You make ordinary moments feel like scenes from a movie I never want to end — and somehow manage to be the best part of every single one.</p></div>
+    <div class="card"><div class="card-number">02</div><p class="card-text">The way you laugh — fully, unguardedly, without holding back — is the kind of sound I would genuinely travel ridiculous distances just to hear.</p></div>
+    <div class="card"><div class="card-number">03</div><p class="card-text">Your stubbornness is honestly adorable. Even when it's directed at me. Especially when it's directed at me. I'll never admit this to your face.</p></div>
+    <div class="card"><div class="card-number">04</div><p class="card-text">You've somehow managed to be my comfort place and my favorite chaos simultaneously. I don't know how you do it. It should be impossible.</p></div>
+    <div class="card"><div class="card-number">05</div><p class="card-text">Being around you just... feels like home. The kind you didn't know you were missing until you suddenly found yourself standing in it.</p></div>
+    <div class="card"><div class="card-number">06</div><p class="card-text">And let's be completely honest — you clearly have impeccable taste. You kept me around this long, didn't you? 😏</p></div>
+  </div>
+</section>
+
+<!-- MEMORY -->
+<section class="memory-section">
+  <div class="memory-inner">
+    <p class="section-label reveal" style="margin-bottom:1.5rem;">a very specific, very real memory</p>
+    <div class="memory-card reveal">
+      <span class="memory-icon">🌙</span>
+      <p class="memory-title">The Night I Couldn't Sleep</p>
+      <p class="memory-text">
+        You know how we never had late night calls?<br><br>
+        Well — there was this one night when I found out something.<br>
+        Something that made my whole chest feel like it had butterflies doing backflips inside it.<br><br>
+        <em>The crush... wasn't one sided.</em><br><br>
+        I lay there staring at the ceiling at 2am, heart going absolutely feral, wanting SO badly to just text you.<br>
+        To talk. To say something. To say <em>everything.</em><br><br>
+        But nope. You — in your iconic fashion — were already fast asleep. 😭<br><br>
+        So I just lay there. Wide awake. Butterflies. Ceiling. Chaos.<br>
+        <em>All because of you, Dolly. All because of you.</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- STANDOFF -->
+<section class="tease-section" style="min-height:70vh;">
+  <div class="tease-inner">
+    <p class="whisper reveal">the great standoff of 2024...</p>
+    <div class="divider"></div>
+    <p class="tease-body reveal">
+      We both knew.<br>
+      We both <em>knew</em> we knew.<br><br>
+      And yet — there we were. Two absolute cowards,<br>
+      silently daring the other to go first. 🫠<br><br>
+      <em>"You say it."</em><br>
+      <em>"No, YOU say it."</em><br>
+      <em>"I'm not saying it first."</em><br>
+      <em>"Neither am I."</em><br><br>
+      Well.<br>
+      I got tired of waiting.<br><br>
+      <em>So here we are. I made a whole website about it.</em><br>
+      Consider this my white flag. 🏳️
+    </p>
+  </div>
+</section>
+
+<!-- SCRATCH CARD SHAYARI -->
+<section class="scratch-section">
+  <div class="scratch-inner">
+    <p class="scratch-label reveal">✦ &nbsp; maine likha hai sirf tumhare liye &nbsp; ✦</p>
+    <p class="scratch-subtitle reveal">ek raaz chupaaya hai is card ke neeche — scratch karo toh jaano 🤫</p>
+
+    <div class="scratch-wrap reveal" id="scratchWrap">
+      <!-- shayari underneath the canvas -->
+      <div class="shayari-reveal" id="shayariCard">
+        <span class="shayari-emoji-top">🌹 ✨ 🌙</span>
+        <p class="shayari-text">
+          <span class="hi">Kaise dekhu kisi aur ko,</span><br>
+          ke meri aakhon mein <span class="pk">sirf tum ho</span> 🥺<br><br>
+
+          Nazare laakh haseen sahi —<br>
+          magar meri nazar mein<br>
+          <span class="pk">sirf khubsurat tum ho</span> 💜<br><br>
+
+          <span class="go">Chand, taare, phool, khushbooein,</span><br>
+          shayari — ye sab bhi achha hai ✨<br><br>
+
+          Magar main kya karu in sab ka,<br>
+          ke mere liye kafi —<br>
+          <span class="hi">sirf tum ho.</span> 🌹
+        </p>
+        <span class="shayari-emoji-bottom">💜 🌙 ✨ 💜</span>
+        <p class="shayari-credit">— Ronak, tumhare liye ✦</p>
+      </div>
+      <!-- scratch overlay canvas -->
+      <canvas id="scratchCanvas"></canvas>
+    </div>
+
+    <p class="scratch-hint-txt reveal" id="scratchHint">☝ scratch here to reveal</p>
+    <p class="scratch-done-msg" id="scratchDone"></p>
+  </div>
+</section>
+
+<!-- CONFESSION -->
+<section class="confession-section">
+  <div class="confession-inner" id="confessionInner">
+    <p class="cline">Somewhere between all our conversations,</p>
+    <p class="cline">all our silences that never felt awkward,</p>
+    <p class="cline">all our ridiculously specific inside jokes,</p>
+    <p class="cline">all the moments that felt ordinary but somehow weren't —</p>
+    <div class="divider" style="opacity:0;transition:opacity .8s ease;" id="confDivider"></div>
+    <p class="cline big">I realized something.</p>
+    <p class="cline accent">You're not just my best friend.</p>
+    <p class="cline big">You're the person I want to choose,<br>every single day.</p>
+
+    <div class="serendipity-block" id="serendipityBlock">
+      <span class="serendipity-label">✦ &nbsp; how we even got here &nbsp; ✦</span>
+      <p>
+        Think about it — we started out <em>slagging your ex together.</em><br>
+        Just two people bonding over the most chaotic, unromantic thing possible.<br><br>
+        And somewhere in between all of that — the venting, the laughing, the late night chaos —
+        something shifted. Quietly. Without either of us planning it.<br><br>
+        <span class="pink-em">That journey? From that to this?</span><br>
+        It was serendipitous in the most ridiculous, most us way imaginable.<br><br>
+        I don't think we could have scripted it better if we tried.<br>
+        And honestly — <em>I don't think either of us will ever forget how it started.</em>
+      </p>
+    </div>
+
+    <p class="cline gold-text" id="goldLine">And I'm done waiting for you to go first. 😌</p>
+    <p class="cline pink-c" style="margin-top:.6rem;">Because some things are worth saying out loud, Vidhi.</p>
+  </div>
+</section>
+
+<!-- QUESTION -->
+<section class="question-section">
+  <p class="q-intro">So... Vidhi. From Ronak.</p>
+  <div class="the-question">Will you be mine?</div>
+  <div class="buttons-row" id="buttonsRow">
+    <button class="btn-yes" onclick="sayYes()">Yes, always 💜</button>
+    <button class="btn-no" id="noBtn" onmouseenter="runAway(this)" onclick="noClick(this)">No</button>
+  </div>
+  <div class="result-msg" id="yesResult">
+    <div class="result-big">I knew it. 💜</div>
+    <p class="result-sub">
+      You've always been mine, honestly.<br>
+      You just needed a little convincing.<br><br>
+      <em>Now stop smiling and pretending you're not smiling. I can feel it from here.</em>
+    </p>
+    <div class="love-note">
+      <p class="love-note-title">💌 &nbsp; A note, just for you</p>
+      <p class="love-note-body">
+        Vidhi — I'm not good at grand speeches. You know that.<br><br>
+        But I am good at knowing when something matters.<br>
+        And you? You matter more than I have ever let on.<br><br>
+        I want to be the person who makes you smile for no reason.<br>
+        Who bothers you just enough. Who shows up, every single time.<br><br>
+        Thank you for being you. For being stubborn and warm and chaotic and wonderful.<br>
+        Thank you for being my person.<br><br>
+        I'm not letting you go back to sleep without knowing that. 🌙
+      </p>
+      <p class="love-note-sig">— Ronak ✦</p>
+    </div>
+    <p class="fielding-line">yeyy filding set ho gayi 👾👾</p>
+  </div>
+  <div class="result-msg" id="noResult">
+    <p class="result-sub">
+      <em>That button appears to be broken. So sorry. 😇<br>
+      This website only comes with one working option.<br>
+      (It was always going to be Yes. You know that.)</em>
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  made with a lot of feelings &nbsp;✦&nbsp; and one very specific, very sleepy person in mind &nbsp;✦&nbsp; — Ronak
+</footer>
+
+<script>
+/* STARS */
+const cv=document.getElementById('starCanvas'),cx=cv.getContext('2d');
+let stars=[],shoots=[];
+function resize(){cv.width=innerWidth;cv.height=innerHeight;}
+function mkStars(){
+  stars=[];
+  for(let i=0;i<220;i++)stars.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.4+.2,a:Math.random(),spd:Math.random()*.018+.004,dir:Math.random()>.5?1:-1,col:Math.random()>.8?'#a78bfa':Math.random()>.9?'#f9a8d4':'#fff'});
+}
+function draw(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  stars.forEach(s=>{s.a+=s.spd*s.dir;if(s.a>=1||s.a<=.08)s.dir*=-1;cx.beginPath();cx.arc(s.x,s.y,s.r,0,Math.PI*2);cx.fillStyle=s.col;cx.globalAlpha=s.a;cx.fill();});
+  cx.globalAlpha=1;
+  shoots=shoots.filter(s=>s.life>0);
+  shoots.forEach(s=>{
+    const ex=s.x-s.len*Math.cos(s.ang),ey=s.y-s.len*Math.sin(s.ang);
+    const g=cx.createLinearGradient(s.x,s.y,ex,ey);
+    g.addColorStop(0,`rgba(255,255,255,${s.life/100})`);g.addColorStop(1,'rgba(255,255,255,0)');
+    cx.beginPath();cx.moveTo(s.x,s.y);cx.lineTo(ex,ey);cx.strokeStyle=g;cx.lineWidth=1.5;cx.stroke();
+    s.x+=Math.cos(s.ang)*9;s.y+=Math.sin(s.ang)*9;s.life-=2.5;
+  });
+  requestAnimationFrame(draw);
+}
+window.addEventListener('resize',()=>{resize();mkStars();});
+resize();mkStars();draw();
+setInterval(()=>{shoots.push({x:Math.random()*cv.width*.7,y:Math.random()*cv.height*.4,ang:Math.PI/4+(Math.random()-.5)*.35,len:70+Math.random()*70,life:100});},3500);
+
+/* SCROLL REVEAL */
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:.18});
+document.querySelectorAll('.reveal,.q-intro,.the-question').forEach((el,i)=>{el.style.transitionDelay=i%4*.1+'s';ro.observe(el);});
+
+/* CARD REVEAL */
+const cr=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.card').forEach((c,i)=>setTimeout(()=>c.classList.add('visible'),i*130));cr.unobserve(e.target);}});},{threshold:.08});
+const grid=document.querySelector('.cards-grid');if(grid)cr.observe(grid);
+
+/* CONFESSION REVEAL */
+const confObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const lines=e.target.querySelectorAll('.cline');
+      lines.forEach((l,i)=>setTimeout(()=>l.classList.add('visible'),i*320));
+      setTimeout(()=>{const d=document.getElementById('confDivider');if(d)d.style.opacity='1';},lines.length*320/2);
+      setTimeout(()=>{const sb=document.getElementById('serendipityBlock');if(sb)sb.classList.add('visible');},lines.length*320+200);
+      setTimeout(()=>{const gl=document.getElementById('goldLine');if(gl)gl.classList.add('visible');},lines.length*320+900);
+      confObs.unobserve(e.target);
+    }
+  });
+},{threshold:.15});
+const ci=document.getElementById('confessionInner');if(ci)confObs.observe(ci);
+
+/* SCRATCH CARD */
+(function(){
+  const wrap=document.getElementById('scratchWrap');
+  const card=document.getElementById('shayariCard');
+  const sc=document.getElementById('scratchCanvas');
+  const hint=document.getElementById('scratchHint');
+  const done=document.getElementById('scratchDone');
+  const sctx=sc.getContext('2d');
+  let painting=false,revealed=false;
+
+  function initCanvas(){
+    const w=wrap.offsetWidth;
+    const h=card.offsetHeight;
+    sc.width=w; sc.height=h;
+    sc.style.width='100%';
+    sc.style.height=h+'px';
+
+    // rich deep-purple cover
+    const grad=sctx.createLinearGradient(0,0,w,h);
+    grad.addColorStop(0,'#1e0a40');
+    grad.addColorStop(.45,'#3b0f8a');
+    grad.addColorStop(1,'#1a063a');
+    sctx.fillStyle=grad;
+    sctx.fillRect(0,0,w,h);
+
+    // shimmer sheen
+    const shine=sctx.createLinearGradient(0,0,w,0);
+    shine.addColorStop(0,'rgba(196,181,253,0)');
+    shine.addColorStop(.5,'rgba(196,181,253,.13)');
+    shine.addColorStop(1,'rgba(196,181,253,0)');
+    sctx.fillStyle=shine;
+    sctx.fillRect(0,0,w,h);
+
+    // sparkle dots
+    for(let i=0;i<40;i++){
+      sctx.beginPath();
+      sctx.arc(Math.random()*w,Math.random()*h,Math.random()*1.5+.5,0,Math.PI*2);
+      sctx.fillStyle=`rgba(255,255,255,${Math.random()*.35+.1})`;
+      sctx.fill();
+    }
+
+    // cover text
+    const fs=Math.max(16,Math.min(w*0.052,28));
+    sctx.textAlign='center';
+    sctx.fillStyle='rgba(196,181,253,0.7)';
+    sctx.font=`bold ${fs*1.3}px 'Dancing Script',cursive`;
+    sctx.fillText('🌹 scratch karo... 🌹', w/2, h/2-fs*0.9);
+    sctx.font=`${fs*0.75}px 'Raleway',sans-serif`;
+    sctx.fillStyle='rgba(167,139,250,0.45)';
+    sctx.fillText('ek raaz chupaaya hai tumhare liye', w/2, h/2+fs*0.5);
+    sctx.font=`${fs*0.65}px 'Raleway',sans-serif`;
+    sctx.fillStyle='rgba(249,168,212,0.35)';
+    sctx.fillText('~ Ronak ~', w/2, h/2+fs*1.4);
+  }
+
+  function pos(e){
+    const r=sc.getBoundingClientRect();
+    const src=e.touches?e.touches[0]:e;
+    return{x:(src.clientX-r.left)*(sc.width/r.width),y:(src.clientY-r.top)*(sc.height/r.height)};
+  }
+
+  function scratch(e){
+    e.preventDefault();
+    if(!painting||revealed)return;
+    const{x,y}=pos(e);
+    sctx.globalCompositeOperation='destination-out';
+    sctx.beginPath();
+    sctx.arc(x,y,32,0,Math.PI*2);
+    sctx.fill();
+    // also draw a line to fill gaps on fast moves
+    if(e.movementX!==undefined){
+      sctx.lineWidth=56;
+      sctx.lineCap='round';
+      sctx.stroke();
+    }
+    checkReveal();
+  }
+
+  function checkReveal(){
+    if(revealed)return;
+    // sample every 16th pixel (alpha channel)
+    const data=sctx.getImageData(0,0,sc.width,sc.height).data;
+    let cleared=0,total=0;
+    for(let i=3;i<data.length;i+=64){total++;if(data[i]<10)cleared++;}
+    if(cleared/total>.42)fullReveal();
+  }
+
+  function fullReveal(){
+    revealed=true;
+    sc.style.transition='opacity 1s ease';
+    sc.style.opacity='0';
+    setTimeout(()=>{sc.style.display='none';},1050);
+    if(hint)hint.style.opacity='0';
+    setTimeout(()=>done.classList.add('show'),600);
+    // tiny heart burst
+    const em=['💜','🌹','✨','💕'];
+    for(let i=0;i<14;i++){
+      setTimeout(()=>{
+        const h=document.createElement('div');
+        h.className='heart-float';
+        h.textContent=em[Math.floor(Math.random()*em.length)];
+        h.style.cssText=`left:${Math.random()*88+6}vw;bottom:${Math.random()*20+8}vh;font-size:${Math.random()*1.1+.9}rem;animation-duration:${Math.random()*1.5+2.2}s;`;
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),4500);
+      },i*90);
+    }
+  }
+
+  window.addEventListener('load',()=>setTimeout(initCanvas,250));
+  window.addEventListener('resize',()=>{if(!revealed)setTimeout(initCanvas,120);});
+
+  sc.addEventListener('mousedown',e=>{painting=true;scratch(e);});
+  sc.addEventListener('mousemove',scratch);
+  sc.addEventListener('mouseup',()=>painting=false);
+  sc.addEventListener('mouseleave',()=>painting=false);
+  sc.addEventListener('touchstart',e=>{painting=true;scratch(e);},{passive:false});
+  sc.addEventListener('touchmove',scratch,{passive:false});
+  sc.addEventListener('touchend',()=>painting=false);
+})();
+
+/* NO BUTTON */
+let noHits=0;
+function runAway(btn){
+  if(window.innerWidth<640)return;
+  noHits++;
+  if(noHits>6){btn.style.display='none';return;}
+  const maxX=window.innerWidth-120,maxY=window.innerHeight-80;
+  btn.style.position='fixed';
+  btn.style.left=Math.max(10,Math.random()*maxX)+'px';
+  btn.style.top=Math.max(10,Math.random()*maxY)+'px';
+  btn.style.transform='rotate('+(Math.random()*30-15)+'deg)';
+  btn.style.transition='left .15s ease,top .15s ease';
+}
+function noClick(btn){btn.style.display='none';document.getElementById('noResult').classList.add('show');}
+
+/* YES + CONFETTI + HEARTS */
+function sayYes(){
+  const row=document.getElementById('buttonsRow');
+  row.style.opacity='0';row.style.pointerEvents='none';
+  setTimeout(()=>{row.style.display='none';document.getElementById('yesResult').classList.add('show');},400);
+  burst();floatHearts();
+}
+function burst(){
+  const cols=['#a78bfa','#818cf8','#c4b5fd','#fbbf24','#f9a8d4','#fff','#7c3aed','#6ee7b7','#fb7185','#fde68a','#bfdbfe'];
+  for(let i=0;i<200;i++){
+    setTimeout(()=>{
+      const p=document.createElement('div');p.className='cp';
+      const w=Math.random()*11+4,h=Math.random()*11+4;
+      p.style.cssText=`left:${Math.random()*100}vw;width:${w}px;height:${h}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${['50%','3px','0'][Math.floor(Math.random()*3)]};animation-duration:${Math.random()*3+2}s;opacity:1;`;
+      document.body.appendChild(p);setTimeout(()=>p.remove(),6000);
+    },i*18);
+  }
+  setTimeout(()=>{
+    for(let i=0;i<80;i++){
+      setTimeout(()=>{
+        const p=document.createElement('div');p.className='cp';
+        const w=Math.random()*8+3,h=Math.random()*8+3;
+        p.style.cssText=`left:${Math.random()*100}vw;width:${w}px;height:${h}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:50%;animation-duration:${Math.random()*2.5+2}s;opacity:1;`;
+        document.body.appendChild(p);setTimeout(()=>p.remove(),5000);
+      },i*30);
+    }
+  },1200);
+}
+function floatHearts(){
+  const em=['💜','💜','💖','✨','💜','🌟','💜','💕'];
+  for(let i=0;i<24;i++){
+    setTimeout(()=>{
+      const h=document.createElement('div');h.className='heart-float';
+      h.textContent=em[Math.floor(Math.random()*em.length)];
+      h.style.cssText=`left:${Math.random()*95}vw;bottom:${Math.random()*30+5}vh;font-size:${Math.random()*1.4+1}rem;animation-duration:${Math.random()*2+2.5}s;`;
+      document.body.appendChild(h);setTimeout(()=>h.remove(),5000);
+    },i*120);
+  }
+}
+</script>
+</body>
+</html>
