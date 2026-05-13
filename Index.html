@@ -556,6 +556,163 @@ section{position:relative;z-index:1;}
   transition:opacity .8s ease,transform .8s ease;
 }
 .reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ══════════════════════════════════
+   ── SCRATCH CARD SHAYARI SECTION ──
+   ══════════════════════════════════ */
+.shayari-section{
+  min-height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:5rem 2rem;
+  text-align:center;
+}
+.shayari-inner{max-width:680px;width:100%;}
+
+.shayari-intro-label{
+  font-family:var(--font-script);
+  font-size:1.4rem;
+  color:var(--gold);
+  margin-bottom:.5rem;
+}
+.shayari-intro-sub{
+  font-family:var(--font-display);
+  font-size:1.05rem;
+  font-style:italic;
+  color:var(--silver);
+  opacity:.7;
+  margin-bottom:2.2rem;
+}
+
+/* the scratch card wrapper */
+.scratch-wrapper{
+  position:relative;
+  width:100%;
+  max-width:560px;
+  margin:0 auto;
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 0 60px rgba(251,191,36,.12), 0 0 0 1px rgba(251,191,36,.2);
+}
+
+/* revealed content underneath */
+.shayari-reveal{
+  background:rgba(15,10,40,1);
+  border-radius:24px;
+  padding:2.8rem 2.2rem 2.4rem;
+  position:relative;
+  user-select:none;
+}
+.shayari-reveal::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(251,191,36,.6),transparent);
+}
+
+.shayari-emoji-top{
+  font-size:2rem;
+  display:block;
+  margin-bottom:1.2rem;
+  letter-spacing:.4rem;
+}
+.shayari-urdu{
+  font-family:var(--font-display);
+  font-size:clamp(1.1rem,2.8vw,1.5rem);
+  font-style:italic;
+  color:var(--silver-light);
+  line-height:2.1;
+  margin-bottom:1.6rem;
+}
+.shayari-urdu .line-gold{color:var(--gold);}
+.shayari-urdu .line-pink{color:var(--pink);}
+.shayari-urdu .line-purple{color:var(--purple-pale);}
+
+.shayari-reactions{
+  display:flex;
+  justify-content:center;
+  gap:.7rem;
+  flex-wrap:wrap;
+  margin-top:1.4rem;
+  font-size:1.5rem;
+  animation:bounceIn .6s ease forwards;
+}
+@keyframes bounceIn{
+  0%{opacity:0;transform:scale(.5);}
+  60%{transform:scale(1.15);}
+  100%{opacity:1;transform:scale(1);}
+}
+.shayari-sig{
+  margin-top:1.4rem;
+  font-family:var(--font-script);
+  font-size:1.2rem;
+  color:rgba(251,191,36,.6);
+  display:block;
+}
+
+/* the canvas that sits on top for scratching */
+#scratchCanvas{
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:100%;
+  border-radius:24px;
+  cursor:crosshair;
+  touch-action:none;
+}
+
+/* hint text shown before scratching */
+.scratch-hint{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  text-align:center;
+  z-index:2;
+  transition:opacity .4s ease;
+}
+.scratch-hint-icon{font-size:2.8rem;display:block;animation:wiggle 1.4s ease-in-out infinite;}
+.scratch-hint-text{
+  display:block;
+  font-family:var(--font-script);
+  font-size:1.3rem;
+  color:rgba(255,255,255,.9);
+  margin-top:.5rem;
+  text-shadow:0 2px 8px rgba(0,0,0,.8);
+}
+@keyframes wiggle{
+  0%,100%{transform:rotate(-8deg);}
+  50%{transform:rotate(8deg);}
+}
+
+/* progress bar */
+.scratch-progress-wrap{
+  margin-top:1.2rem;
+  display:flex;
+  align-items:center;
+  gap:.8rem;
+  justify-content:center;
+}
+.scratch-progress-bar{
+  width:180px;height:4px;
+  background:rgba(255,255,255,.1);
+  border-radius:4px;
+  overflow:hidden;
+}
+.scratch-progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--gold),var(--pink));
+  border-radius:4px;
+  width:0%;
+  transition:width .2s ease;
+}
+.scratch-progress-label{
+  font-family:var(--font-body);
+  font-size:.75rem;
+  color:rgba(251,191,36,.6);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
 </style>
 </head>
 <body>
@@ -645,17 +802,17 @@ section{position:relative;z-index:1;}
 <!-- ════ STANDOFF ════ -->
 <section class="tease-section" style="min-height:70vh;">
   <div class="tease-inner">
-    <p class="whisper reveal">the great standoff of 2024...</p>
+    <p class="whisper reveal">the great standoff of ...</p>
     <div class="divider"></div>
     <p class="tease-body reveal">
       We both knew.<br>
       We both <em>knew</em> we knew.<br><br>
       And yet — there we were. Two absolute cowards,<br>
       silently daring the other to go first. 🫠<br><br>
-      <em>"You say it."</em><br>
+      <em>"YOU say it."</em><br>
       <em>"No, YOU say it."</em><br>
-      <em>"I'm not saying it first."</em><br>
-      <em>"Neither am I."</em><br><br>
+      <em>"I'M not saying it first."</em><br>
+      <em>"Neither AM I."</em><br><br>
       Well.<br>
       I got tired of waiting.<br><br>
       <em>So here we are. I made a whole website about it.</em><br>
@@ -664,56 +821,54 @@ section{position:relative;z-index:1;}
   </div>
 </section>
 
-  <!-- ════ SECRET SHAYARI SCRATCH CARD ════ -->
-<section class="memory-section" style="min-height:85vh;">
-  <div class="memory-inner">
-    <p class="section-label reveal">a little something hidden for you ✨</p>
+<!-- ════ SHAYARI SCRATCH CARD ════ -->
+<section class="shayari-section">
+  <div class="shayari-inner">
+    <p class="shayari-intro-label reveal">✨ kuch mere dil ki baat ✨</p>
+    <p class="shayari-intro-sub reveal">( scratch the card to reveal what I've been wanting to say... )</p>
 
-    <div class="memory-card reveal scratch-wrapper">
-      <span class="memory-icon">💌</span>
+    <div class="scratch-wrapper reveal" id="scratchWrapper">
 
-      <p class="memory-title">
-        Scratch this gently, Dolly 🤍
-      </p>
-
-      <div class="scratch-card">
-        
-        <!-- Shayari underneath -->
-        <div class="shayari-hidden">
-          <p>
-            👀✨<br><br>
-
-            <em>
-            “Kaise dekhu kisi aur ko,<br>
-            ke meri aankhon mein sirf tum ho. 💜<br><br>
-
-            Nazare laakh haseen sahi,<br>
-            magar meri nazar mein sirf khubsurat tum ho. 🌙✨<br><br>
-
-            Chand, taare, phool, khushbooein, shayari —<br>
-            ye sab bhi achha hai... 🌸🌌<br><br>
-
-            Magar main kya karu in sab ka,<br>
-            ke mere liye kaafi sirf tum ho.” 💖
-            </em>
-          </p>
-
-          <div class="shayari-reaction">
-            🫠💜✨
-          </div>
+      <!-- the shayari underneath -->
+      <div class="shayari-reveal" id="shayariReveal">
+        <span class="shayari-emoji-top">🌙 💜 ✨</span>
+        <div class="shayari-urdu">
+          <span class="line-gold">kaise dekhu kisi aur ko,</span><br>
+          <span>ke meri aankhon mein sirf tum ho —</span><br><br>
+          <span>nazare laakh haseen sahi,</span><br>
+          <span class="line-pink">magar meri nazar mein sirf khoobsurat tum ho. 🌸</span><br><br>
+          <span>chand, taare, phool, khushbooein,</span><br>
+          <span>shayari — ye sab bhi achha hai...</span><br><br>
+          <span class="line-purple">magar main kya karun in sab ka,</span><br>
+          <span class="line-gold">ke mere liye kaafi sirf tum ho. 💜</span>
         </div>
-
-        <!-- Scratch layer -->
-        <canvas id="scratchCanvas"></canvas>
-
-        <div class="scratch-text">
-          scratch here ✨
+        <div class="shayari-reactions" id="shayariReactions" style="opacity:0;">
+          🌙 🌸 🌹 💌
         </div>
-
+        <span class="shayari-sig" id="shayariSig" style="opacity:0;">— Ronak, tumhare liye ✦</span>
       </div>
+
+      <!-- scratch canvas overlay -->
+      <canvas id="scratchCanvas"></canvas>
+
+      <!-- hint before scratching -->
+      <div class="scratch-hint" id="scratchHint">
+        <span class="scratch-hint-icon">💅</span>
+        <span class="scratch-hint-text">scratch to reveal 💜</span>
+      </div>
+
+    </div>
+
+    <!-- progress bar -->
+    <div class="scratch-progress-wrap reveal">
+      <div class="scratch-progress-bar">
+        <div class="scratch-progress-fill" id="scratchFill"></div>
+      </div>
+      <span class="scratch-progress-label" id="scratchLabel">scratch away...</span>
     </div>
   </div>
 </section>
+
 
 <!-- ════ CONFESSION ════ -->
 <section class="confession-section">
@@ -727,7 +882,6 @@ section{position:relative;z-index:1;}
     <p class="cline accent">You're not just my best friend.</p>
     <p class="cline big">You're the person I want to choose,<br>every single day, every single hour, every single second.</p>
 
-    <!-- ✦ NEW: serendipity block ✦ -->
     <div class="serendipity-block" id="serendipityBlock">
       <span class="serendipity-label">✦ &nbsp; how we even got here &nbsp; ✦</span>
       <p>
@@ -833,7 +987,7 @@ function draw(){
   });
   requestAnimationFrame(draw);
 }
-window.addEventListener('resize',()=>{resize();mkStars();});
+window.addEventListener('resize',()=>{resize();mkStars();initScratch();});
 resize();mkStars();draw();
 setInterval(()=>{
   shoots.push({x:Math.random()*cv.width*.7,y:Math.random()*cv.height*.4,ang:Math.PI/4+(Math.random()-.5)*.35,len:70+Math.random()*70,life:100});
@@ -874,7 +1028,6 @@ const confObs=new IntersectionObserver(entries=>{
         const d=document.getElementById('confDivider');
         if(d)d.style.opacity='1';
       },lines.length*320/2);
-      // serendipity block + gold line
       setTimeout(()=>{
         const sb=document.getElementById('serendipityBlock');
         if(sb)sb.classList.add('visible');
@@ -960,6 +1113,154 @@ function floatHearts(){
     },i*120);
   }
 }
+
+// ══════════════════════════════
+//  SCRATCH CARD LOGIC
+// ══════════════════════════════
+let scratchDone = false;
+
+function initScratch(){
+  const wrapper = document.getElementById('scratchWrapper');
+  const revealEl = document.getElementById('shayariReveal');
+  const canvas = document.getElementById('scratchCanvas');
+  const ctx = canvas.getContext('2d');
+  const hint = document.getElementById('scratchHint');
+  const fill = document.getElementById('scratchFill');
+  const label = document.getElementById('scratchLabel');
+
+  // size canvas to match the reveal card
+  const rect = revealEl.getBoundingClientRect();
+  const w = wrapper.offsetWidth;
+  const h = revealEl.offsetHeight;
+  canvas.width = w;
+  canvas.height = h;
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+
+  // draw the scratch layer — deep space gold shimmer
+  const grad = ctx.createLinearGradient(0, 0, w, h);
+  grad.addColorStop(0, '#1a0f3a');
+  grad.addColorStop(0.3, '#2d1b6e');
+  grad.addColorStop(0.6, '#1e1045');
+  grad.addColorStop(1, '#0d0820');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, w, h);
+
+  // gold shimmer dots
+  for(let i = 0; i < 120; i++){
+    ctx.beginPath();
+    ctx.arc(Math.random()*w, Math.random()*h, Math.random()*1.5+.3, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(251,191,36,${Math.random()*.6+.1})`;
+    ctx.fill();
+  }
+
+  // instruction text on the overlay
+  ctx.font = 'bold 18px Raleway, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  ctx.textAlign = 'center';
+  ctx.fillText('✦  kuch khaas chhupa hai yahan  ✦', w/2, h/2 - 30);
+  ctx.font = '14px Raleway, sans-serif';
+  ctx.fillStyle = 'rgba(251,191,36,0.75)';
+  ctx.fillText('apni ungliyon se scratch karo 💅', w/2, h/2 + 4);
+
+  // scratch composite
+  ctx.globalCompositeOperation = 'destination-out';
+
+  let isDrawing = false;
+
+  function getPos(e){
+    const r = canvas.getBoundingClientRect();
+    const src = e.touches ? e.touches[0] : e;
+    return { x: src.clientX - r.left, y: src.clientY - r.top };
+  }
+
+  function scratch(x, y){
+    ctx.beginPath();
+    ctx.arc(x, y, 28, 0, Math.PI*2);
+    ctx.fill();
+    checkProgress();
+  }
+
+  function checkProgress(){
+    if(scratchDone) return;
+    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    let cleared = 0;
+    for(let i = 3; i < imgData.data.length; i += 4){
+      if(imgData.data[i] === 0) cleared++;
+    }
+    const pct = Math.round((cleared / (canvas.width * canvas.height)) * 100);
+    fill.style.width = Math.min(pct, 100) + '%';
+
+    if(pct > 55){
+      label.textContent = 'almost there... 🌙';
+    } else if(pct > 25){
+      label.textContent = 'keep going... ✨';
+    }
+
+    if(pct >= 65 && !scratchDone){
+      scratchDone = true;
+      revealComplete();
+    }
+  }
+
+  function revealComplete(){
+    canvas.style.transition = 'opacity .8s ease';
+    canvas.style.opacity = '0';
+    hint.style.opacity = '0';
+    fill.style.width = '100%';
+    label.textContent = 'revealed 💜';
+
+    setTimeout(()=>{
+      canvas.style.display = 'none';
+      hint.style.display = 'none';
+    }, 900);
+
+    // pop in reactions and sig
+    setTimeout(()=>{
+      const r = document.getElementById('shayariReactions');
+      const s = document.getElementById('shayariSig');
+      r.style.transition = 'opacity .6s ease';
+      s.style.transition = 'opacity .6s ease';
+      r.style.opacity = '1';
+      s.style.opacity = '1';
+    }, 600);
+
+    // mini confetti burst
+    miniConfetti();
+  }
+
+  canvas.addEventListener('mousedown', e=>{ isDrawing=true; const p=getPos(e); scratch(p.x,p.y); });
+  canvas.addEventListener('mousemove', e=>{ if(!isDrawing) return; const p=getPos(e); scratch(p.x,p.y); hint.style.opacity='0'; });
+  canvas.addEventListener('mouseup', ()=>{ isDrawing=false; });
+  canvas.addEventListener('mouseleave', ()=>{ isDrawing=false; });
+
+  canvas.addEventListener('touchstart', e=>{ e.preventDefault(); isDrawing=true; const p=getPos(e); scratch(p.x,p.y); },{passive:false});
+  canvas.addEventListener('touchmove', e=>{ e.preventDefault(); if(!isDrawing) return; const p=getPos(e); scratch(p.x,p.y); hint.style.opacity='0'; },{passive:false});
+  canvas.addEventListener('touchend', ()=>{ isDrawing=false; });
+}
+
+function miniConfetti(){
+  const cols=['#fbbf24','#a78bfa','#f9a8d4','#c4b5fd','#fff','#6ee7b7'];
+  for(let i=0;i<60;i++){
+    setTimeout(()=>{
+      const p=document.createElement('div');
+      p.className='cp';
+      const w=Math.random()*8+3, h=Math.random()*8+3;
+      p.style.cssText=`left:${20+Math.random()*60}vw;width:${w}px;height:${h}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:50%;animation-duration:${Math.random()*2+1.5}s;opacity:1;`;
+      document.body.appendChild(p);
+      setTimeout(()=>p.remove(),4000);
+    },i*25);
+  }
+}
+
+// init scratch after DOM paints
+window.addEventListener('load', ()=>{ setTimeout(initScratch, 300); });
+// also reinit if window resizes
+let resizeTimer;
+window.addEventListener('resize', ()=>{
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(()=>{ if(!scratchDone) initScratch(); }, 400);
+});
 </script>
 </body>
 </html>
